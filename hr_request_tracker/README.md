@@ -1,7 +1,7 @@
 # HR Request Tracker
 
 ## Description
-A professional Odoo 17/18 module for tracking Human Resources requests. This module centralizes HR requests from employees, enabling a structured workflow and improved visibility for HR managers.
+A professional Odoo 17 module for tracking Human Resources requests. This module centralizes HR requests from employees, enabling a structured workflow and improved visibility for HR managers.
 
 ## Features
 - **Employee Portal**: Employees can easily submit and track requests.
