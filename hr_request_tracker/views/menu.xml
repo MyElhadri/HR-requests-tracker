@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top level menu -->
+    <menuitem id="menu_hr_request_root"
+              name="HR Requests"
+              sequence="90"/>
+
+    <!-- App menus -->
+    <menuitem id="menu_hr_request_main"
+              name="Requests"
+              parent="menu_hr_request_root"
+              action="action_hr_request"
+              sequence="10"/>
+              
+    <menuitem id="menu_hr_request_config"
+              name="Configuration"
+              parent="menu_hr_request_root"
+              groups="hr_request_tracker.group_hr_request_manager"
+              sequence="100"/>
+</odoo>
