@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="user_employee_fatima" model="res.users">
+            <field name="name">Fatima (IT Developer)</field>
+            <field name="login">fatima</field>
+            <field name="password">user123</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('hr_request_tracker.group_hr_request_employee'))]"/>
+        </record>
+        <record id="employee_fatima" model="hr.employee">
+            <field name="name">Fatima</field>
+            <field name="user_id" ref="user_employee_fatima"/>
+        </record>
+
+        <record id="user_employee_omar" model="res.users">
+            <field name="name">Omar (Sales Rep)</field>
+            <field name="login">omar</field>
+            <field name="password">user123</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('hr_request_tracker.group_hr_request_employee'))]"/>
+        </record>
+        <record id="employee_omar" model="hr.employee">
+            <field name="name">Omar</field>
+            <field name="user_id" ref="user_employee_omar"/>
+        </record>
+
+        <record id="user_employee_sarah" model="res.users">
+            <field name="name">Sarah (Marketing Manager)</field>
+            <field name="login">sarah</field>
+            <field name="password">user123</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('hr_request_tracker.group_hr_request_employee'))]"/>
+        </record>
+        <record id="employee_sarah" model="hr.employee">
+            <field name="name">Sarah</field>
+            <field name="user_id" ref="user_employee_sarah"/>
+        </record>
+
+        <record id="demo_req_done_1" model="hr.request">
+            <field name="title">May Salary Certificate</field>
+            <field name="employee_id" ref="employee_basic"/> <field name="request_type">certificate</field>
+            <field name="description">I need my May salary certificate for a bank loan application.</field>
+            <field name="state">done</field>
+            <field name="priority">2</field>
+            <field name="hr_response">Generated and attached to your digital personnel file.</field>
+            <field name="responsible_id" ref="user_hr_admin"/> <field name="request_date">2026-05-10</field>
+            <field name="done_date">2026-05-12</field>
+        </record>
+
+        <record id="demo_req_done_2" model="hr.request">
+            <field name="title">Missing Overtime Pay (April)</field>
+            <field name="employee_id" ref="employee_fatima"/>
+            <field name="request_type">payroll_question</field>
+            <field name="description">My weekend overtime from April 15th was not included in my last payslip.</field>
+            <field name="state">done</field>
+            <field name="priority">3</field> <field name="hr_response">Apologies, it was missed. It has been added as a manual adjustment to your June payroll.</field>
+            <field name="responsible_id" ref="user_hr_admin"/>
+            <field name="request_date">2026-05-02</field>
+            <field name="done_date">2026-05-09</field> </record>
+
+        <record id="demo_req_done_3" model="hr.request">
+            <field name="title">Tax Declaration Document</field>
+            <field name="employee_id" ref="employee_omar"/>
+            <field name="request_type">document_request</field>
+            <field name="description">Need my annual tax summary document.</field>
+            <field name="state">done</field>
+            <field name="priority">1</field>
+            <field name="hr_response">Emailed directly to your personal address.</field>
+            <field name="responsible_id" ref="user_hr_admin"/>
+            <field name="request_date">2026-05-15</field>
+            <field name="done_date">2026-05-16</field> </record>
+
+        <record id="demo_req_done_4" model="hr.request">
+            <field name="title">Maternity Leave Policy</field>
+            <field name="employee_id" ref="employee_sarah"/>
+            <field name="request_type">hr_question</field>
+            <field name="description">Can you send me the updated 2026 policy on extended maternity leave?</field>
+            <field name="state">done</field>
+            <field name="priority">1</field>
+            <field name="hr_response">Please see the updated employee handbook on the intranet portal.</field>
+            <field name="responsible_id" ref="user_hr_admin"/>
+            <field name="request_date">2026-04-20</field>
+            <field name="done_date">2026-05-04</field> </record>
+
+        <record id="demo_req_done_5" model="hr.request">
+            <field name="title">Work Attestation for Visa</field>
+            <field name="employee_id" ref="employee_fatima"/>
+            <field name="request_type">document_request</field>
+            <field name="description">Standard attestation for Schengen visa application.</field>
+            <field name="state">done</field>
+            <field name="priority">2</field>
+            <field name="hr_response">Signed and ready at the front desk.</field>
+            <field name="responsible_id" ref="user_hr_admin"/>
+            <field name="request_date">2026-05-28</field>
+            <field name="done_date">2026-05-30</field>
+        </record>
+
+        <record id="demo_req_done_6" model="hr.request">
+            <field name="title">Update Bank Details</field>
+            <field name="employee_id" ref="employee_basic"/>
+            <field name="request_type">other</field>
+            <field name="description">I changed my bank, need to update my RIB for salary transfer.</field>
+            <field name="state">done</field>
+            <field name="priority">2</field>
+            <field name="hr_response">RIB updated successfully in the system.</field>
+            <field name="responsible_id" ref="user_hr_admin"/>
+            <field name="request_date">2026-06-01</field>
+            <field name="done_date">2026-06-02</field>
+        </record>
+
+
+        <record id="demo_req_prog_1" model="hr.request">
+            <field name="title">Bonus Tax Deduction</field>
+            <field name="employee_id" ref="employee_sarah"/>
+            <field name="request_type">payroll_question</field>
+            <field name="description">Why was the Q1 performance bonus taxed at a higher rate?</field>
+            <field name="state">in_progress</field>
+            <field name="priority">1</field>
+            <field name="responsible_id" ref="user_hr_admin"/>
+            <field name="request_date">2026-06-10</field>
+        </record>
+
+        <record id="demo_req_prog_2" model="hr.request">
+            <field name="title">Remote Work Agreement</field>
+            <field name="employee_id" ref="employee_omar"/>
+            <field name="request_type">hr_question</field>
+            <field name="description">I would like to transition to 2 days remote work per week. What forms are needed?</field>
+            <field name="state">in_progress</field>
+            <field name="priority">1</field>
+            <field name="responsible_id" ref="user_hr_admin"/>
+            <field name="request_date">2026-06-12</field>
+        </record>
+
+        <record id="demo_req_prog_3" model="hr.request">
+            <field name="title">Employment Certificate (English)</field>
+            <field name="employee_id" ref="employee_fatima"/>
+            <field name="request_type">certificate</field>
+            <field name="description">Need an employment certificate translated into English.</field>
+            <field name="state">in_progress</field>
+            <field name="priority">2</field>
+            <field name="responsible_id" ref="user_hr_admin"/>
+            <field name="request_date">2026-06-13</field>
+        </record>
+
+        <record id="demo_req_prog_4" model="hr.request">
+            <field name="title">Health Insurance Card Lost</field>
+            <field name="employee_id" ref="employee_basic"/>
+            <field name="request_type">document_request</field>
+            <field name="description">I lost my mutuelle card. How do I order a replacement?</field>
+            <field name="state">in_progress</field>
+            <field name="priority">2</field>
+            <field name="responsible_id" ref="user_hr_admin"/>
+            <field name="request_date">2026-06-14</field>
+        </record>
+
+
+        <record id="demo_req_sub_1" model="hr.request">
+            <field name="title">Travel Expense Reimbursement</field>
+            <field name="employee_id" ref="employee_omar"/>
+            <field name="request_type">payroll_question</field>
+            <field name="description">Have my travel expenses for the Paris conference been approved yet?</field>
+            <field name="state">submitted</field>
+            <field name="priority">1</field>
+            <field name="request_date">2026-06-14</field>
+        </record>
+
+        <record id="demo_req_sub_2" model="hr.request">
+            <field name="title">Training Certificate Upload</field>
+            <field name="employee_id" ref="employee_sarah"/>
+            <field name="request_type">other</field>
+            <field name="description">Please add my new AWS Certification to my HR file.</field>
+            <field name="state">submitted</field>
+            <field name="priority">0</field> <field name="request_date">2026-06-15</field>
+        </record>
+
+        <record id="demo_req_sub_3" model="hr.request">
+            <field name="title">Paternity Leave Request Form</field>
+            <field name="employee_id" ref="employee_basic"/>
+            <field name="request_type">hr_question</field>
+            <field name="description">My wife is expecting next month. Need the paternity forms.</field>
+            <field name="state">submitted</field>
+            <field name="priority">2</field>
+            <field name="request_date">2026-06-15</field>
+        </record>
+
+
+        <record id="demo_req_draft_1" model="hr.request">
+            <field name="title">New Laptop Request</field>
+            <field name="employee_id" ref="employee_fatima"/>
+            <field name="request_type">other</field>
+            <field name="description">My current machine is overheating. (Still checking with IT if I should send this to HR).</field>
+            <field name="state">draft</field>
+            <field name="priority">1</field>
+            <field name="request_date">2026-06-15</field>
+        </record>
+
+        <record id="demo_req_draft_2" model="hr.request">
+            <field name="title">Annual Review Dispute</field>
+            <field name="employee_id" ref="employee_omar"/>
+            <field name="request_type">hr_question</field>
+            <field name="description">I want to formally dispute my rating on...</field>
+            <field name="state">draft</field>
+            <field name="priority">3</field>
+            <field name="request_date">2026-06-15</field>
+        </record>
+
+    </data>
+</odoo>

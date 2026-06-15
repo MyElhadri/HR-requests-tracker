@@ -70,6 +70,29 @@
         </field>
     </record>
 
+    <record id="view_hr_request_graph" model="ir.ui.view">
+        <field name="name">hr.request.graph</field>
+        <field name="model">hr.request</field>
+        <field name="arch" type="xml">
+            <graph string="HR Requests Analysis" type="bar" sample="1">
+                <field name="request_type"/>
+                <field name="state"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_hr_request_pivot" model="ir.ui.view">
+        <field name="name">hr.request.pivot</field>
+        <field name="model">hr.request</field>
+        <field name="arch" type="xml">
+            <pivot string="HR Requests Analysis" sample="1">
+                <field name="request_type" type="row"/>
+                <field name="state" type="col"/>
+                <field name="processing_duration" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
     <record id="view_hr_request_search" model="ir.ui.view">
         <field name="name">hr.request.search</field>
         <field name="model">hr.request</field>
@@ -97,7 +120,8 @@
     <record id="action_hr_request" model="ir.actions.act_window">
         <field name="name">HR Requests</field>
         <field name="res_model">hr.request</field>
-        <field name="view_mode">tree,kanban,form</field> <field name="context">{'search_default_my_requests': 1}</field>
+        <field name="view_mode">tree,kanban,form,graph,pivot</field> 
+        <field name="context">{'search_default_my_requests': 1}</field>
         <field name="help" type="html">
           <p class="o_view_nocontent_smiling_face">
             Create your first HR Request!

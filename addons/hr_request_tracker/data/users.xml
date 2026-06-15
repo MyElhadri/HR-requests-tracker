@@ -7,8 +7,8 @@
             <field name="smtp_host">smtp.gmail.com</field>
             <field name="smtp_port">465</field>
             <field name="smtp_encryption">ssl</field>
-            <field name="smtp_user"><ADD YOUR EMAIL></field>
-            <field name="smtp_pass"><ADD app password></field> 
+            <field name="smtp_user">xxx</field>
+            <field name="smtp_pass">xxx</field> 
             <field name="sequence">10</field>
         </record>
 

@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'data/sequence.xml',
         'data/users.xml',
+        'data/demo_requests.xml',
         'views/hr_request_views.xml',
         'views/hr_request_kanban.xml',
         'views/menu.xml',
