@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <record id="mail_server_gmail" model="ir.mail_server">
+            <field name="name">Gmail SMTP</field>
+            <field name="smtp_host">smtp.gmail.com</field>
+            <field name="smtp_port">465</field>
+            <field name="smtp_encryption">ssl</field>
+            <field name="smtp_user"><ADD YOUR EMAIL></field>
+            <field name="smtp_pass"><ADD app password></field> 
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="user_hr_admin" model="res.users">
+            <field name="name">Akram (HR Manager)</field>
+            <field name="login">akram</field>
+            <field name="password">admin123</field>
+            <field name="email">elassriakram1@gmail.com</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('hr_request_tracker.group_hr_request_manager'))]"/>
+        </record>
+        
+        <record id="employee_hr_admin" model="hr.employee">
+            <field name="name">Akram</field>
+            <field name="user_id" ref="user_hr_admin"/>
+            <field name="work_email">elassriakram1@gmail.com</field>
+        </record>
+
+        <record id="user_employee_basic" model="res.users">
+            <field name="name">Yassine (Employee)</field>
+            <field name="login">yassine</field>
+            <field name="password">user123</field>
+            <field name="email">dynn0s123@gmail.com</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user')), (4, ref('hr_request_tracker.group_hr_request_employee'))]"/>
+        </record>
+        
+        <record id="employee_basic" model="hr.employee">
+            <field name="name">Yassine</field>
+            <field name="user_id" ref="user_employee_basic"/>
+            <field name="work_email">dynn0s123@gmail.com</field>
+        </record>
+
+    </data>
+</odoo>

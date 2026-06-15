@@ -1,17 +1,14 @@
-version: '3.1'
-
 services:
   web:
-    image: odoo:18.0
+    image: odoo:17.0
     depends_on:
       - db
     ports:
       - "8069:8069"
+    command: odoo -c /etc/odoo/odoo.conf -d postgres -i hr_request_tracker
     volumes:
-      - odoo-web-data:/var/lib/odoo
-      - ./config/odoo.conf:/etc/odoo/odoo.conf
-      - ./hr_request_tracker:/mnt/extra-addons/hr_request_tracker
-    command: odoo -c /etc/odoo/odoo.conf
+      - ./addons:/mnt/extra-addons
+      - ./config:/etc/odoo
     environment:
       - HOST=db
       - USER=odoo
@@ -19,13 +16,12 @@ services:
 
   db:
     image: postgres:15
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
-    volumes:
-      - odoo-db-data:/var/lib/postgresql/data
 
 volumes:
-  odoo-web-data:
   odoo-db-data:

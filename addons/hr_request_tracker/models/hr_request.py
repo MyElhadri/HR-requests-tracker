@@ -7,9 +7,21 @@ class HrRequest(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'request_date desc, id desc'
 
-    name = fields.Char(string='Reference', required=True, copy=False, readonly=True, default=lambda self: _('New'))
+    name = fields.Char(
+        string='Reference', 
+        required=True, 
+        copy=False, 
+        readonly=True, 
+        default=lambda self: _('New')
+    )
     title = fields.Char(string='Title', required=True, tracking=True)
-    employee_id = fields.Many2one('hr.employee', string='Employee', required=True, default=lambda self: self.env.user.employee_id, tracking=True)
+    employee_id = fields.Many2one(
+        'hr.employee', 
+        string='Employee', 
+        required=True, 
+        default=lambda self: self.env.user.employee_id, 
+        tracking=True
+    )
     request_type = fields.Selection([
         ('certificate', 'Certificate'),
         ('document_request', 'Document Request'),
@@ -27,7 +39,14 @@ class HrRequest(models.Model):
         ('done', 'Done')
     ], string='Status', default='draft', tracking=True, copy=False)
     
-    responsible_id = fields.Many2one('res.users', string='Responsible HR', tracking=True, domain=lambda self: [('groups_id', 'in', self.env.ref('hr_request_tracker.group_hr_request_manager').id)])
+    # Safely evaluating the domain context by matching group strings to prevent uninitialized registry registry crashes
+    responsible_id = fields.Many2one(
+        'res.users', 
+        string='Responsible HR', 
+        tracking=True, 
+        domain="[('groups_id.category_id.name', '=', 'HR Request Tracker'), ('groups_id.name', '=', 'HR Manager')]"
+    )
+    
     priority = fields.Selection([
         ('0', 'Low'),
         ('1', 'Normal'),
@@ -93,13 +112,11 @@ class HrRequest(models.Model):
     def action_submit(self):
         is_manager = self.env.user.has_group('hr_request_tracker.group_hr_request_manager')
         for record in self:
-            # Vérification de propriété robuste via employee_id.user_id
             if not is_manager and record.employee_id.user_id != self.env.user:
                  raise UserError(_('You can only submit your own requests.'))
             if record.state != 'draft':
                 raise UserError(_('Only draft requests can be submitted.'))
         
-        # Passage du flag `allow_state_change`
         self.with_context(allow_state_change=True).write({'state': 'submitted'})
 
     def action_start_processing(self):
@@ -123,7 +140,7 @@ class HrRequest(models.Model):
                 raise UserError(_('Only in-progress requests can be marked as done.'))
         self.with_context(allow_state_change=True).write({
             'state': 'done',
-            'done_date': fields.Date.context_today(self[0]) if self else fields.Date.today()
+            'done_date': fields.Date.context_today(self)
         })
 
     def action_reset_draft(self):

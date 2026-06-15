@@ -5,7 +5,8 @@
         <field name="model">hr.request</field>
         <field name="arch" type="xml">
             <kanban default_group_by="state" class="o_kanban_small_column" quick_create="false">
-                <field name="id"/> <!-- Obligatoire pour certains widgets comme many2one_avatar_employee -->
+                <field name="id"/>
+                <field name="activity_ids"/>
                 <field name="name"/>
                 <field name="title"/>
                 <field name="employee_id"/>

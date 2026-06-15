@@ -1,6 +1,6 @@
 {
     'name': 'HR Request Tracker',
-    'version': '18.0.1.0.0',
+    'version': '17.0.1.0.0',
     'category': 'Human Resources',
     'summary': 'Track and manage HR requests from employees',
     'description': """
@@ -14,6 +14,7 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
+        'data/users.xml',
         'views/hr_request_views.xml',
         'views/hr_request_kanban.xml',
         'views/menu.xml',
